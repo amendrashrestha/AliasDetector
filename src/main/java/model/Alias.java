@@ -1,16 +1,20 @@
 package model;
 
-
 public class Alias {
-	
-	private String user;
 
-	public Alias(int userID) {
-		this.user = Integer.toString(userID);
+	private int userID;
+
+
+	public Alias(int user) {
+		this.userID = user;
 	}
-	
-	public String toString(){
-		return user;
+
+	public int getUser() {
+		return userID;
+	}
+
+	public void setUser(int user) {
+		this.userID = user;
 	}
 
 }
