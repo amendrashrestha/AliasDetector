@@ -1,20 +1,31 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Alias {
 
-	private int userID;
+	private String userID;
+	private ArrayList<String> postTime;
 
 
-	public Alias(int user) {
+	public Alias(String user) {
 		this.userID = user;
 	}
 
-	public int getUser() {
+	public String getUser() {
 		return userID;
 	}
 
-	public void setUser(int user) {
+	public void setUser(String user) {
 		this.userID = user;
 	}
+	
+	public void setPostTime(ArrayList<String> postTime) {
+        this.postTime = postTime;
+    }
+
+    public ArrayList<String> getPostTime() {
+        return postTime;
+    }
 
 }

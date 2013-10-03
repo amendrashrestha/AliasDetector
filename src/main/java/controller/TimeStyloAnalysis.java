@@ -8,15 +8,24 @@ public class TimeStyloAnalysis {
 
 	public ArrayList<Alias> aliases;
 
-	public TimeStyloAnalysis(ArrayList<?> userList) {
+	public TimeStyloAnalysis() {
+
+	}
+
+	/**
+	 * makes the object of users
+	 * 
+	 * @param userList
+	 */
+	public void returnUserObject(ArrayList<?> userList) {
 
 		aliases = new ArrayList<Alias>();
 		int userSize = userList.size();
 		Alias[] tempAlias = new Alias[userSize];
 
 		for (int i = 0; i < userList.size(); i++) {
-			String tempUserID = userList.get(i).toString();
-			int userID = Integer.parseInt(tempUserID);
+			String userID = userList.get(i).toString();
+
 			tempAlias[i] = new Alias(userID);
 			aliases.add(tempAlias[i]);
 		}

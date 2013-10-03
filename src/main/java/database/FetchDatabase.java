@@ -15,8 +15,8 @@ public class FetchDatabase {
 	 * returns the users from database
 	 * @return
 	 */
-	public ArrayList<Integer> getUsers(){
-		ArrayList<Integer> databaseUsersID = new ArrayList<Integer>();
+	public ArrayList<String> getUsers(){
+		ArrayList<String> databaseUsersID = new ArrayList<String>();
         PreparedStatement ps;
         ResultSet rs;
         Connection con;
@@ -32,7 +32,7 @@ public class FetchDatabase {
 	        ps = con.prepareStatement(selectUserQuery);
 	        rs = ps.executeQuery();
 	        while (rs.next()) {
-	            databaseUsersID.add(rs.getInt(1));
+	            databaseUsersID.add(rs.getString(1));
 	        }
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -44,7 +44,7 @@ public class FetchDatabase {
 	 /*
      * This method returns year and time posted by any users.
      */
-    public ArrayList getPostTime(int ID) {
+    public ArrayList getPostTime(String ID) {
         ArrayList<Timestamp> time = new ArrayList<Timestamp>();
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -79,7 +79,7 @@ public class FetchDatabase {
     /**
      * return time of post of ID
      */
-    public ArrayList<String> getPost(int ID) throws SQLException {
+    public ArrayList<String> getPost(String ID) throws SQLException {
         ArrayList<String> messages = new ArrayList<String>();
         PreparedStatement ps = null;
         ResultSet rs = null;
