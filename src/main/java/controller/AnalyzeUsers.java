@@ -19,7 +19,7 @@ public class AnalyzeUsers {
 		ArrayList<String> users = getResult.getUsers();
 		
 		try {
-			init.splitUsers(users);
+			init.createCluster(users);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		

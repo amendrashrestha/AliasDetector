@@ -49,7 +49,7 @@ public class ClusterUser {
 
 	}
 
-	public void splitUsers(ArrayList<String> user) throws SQLException {
+	public void createCluster(ArrayList<String> user) throws SQLException {
 		initUserObj.returnUserObject(user);
 		userObj = initUserObj.aliases;
 		int userSize = user.size();
@@ -93,28 +93,21 @@ public class ClusterUser {
 
 		HashMap<String, ArrayList> matchedActiveUsers = new HashMap<String, ArrayList>();
 		matchedActiveUsers = initCalc
-				.calculateMatchedList(firstActivityCluster);
-
-		System.out.println("\nActive Cluster");
+				.calculateMatchedList(firstActivityCluster);		
 
 		for (Entry<String, ArrayList> peakMapEntry : matchedActiveUsers
 				.entrySet()) {
+			ArrayList<String> firstActiveUserList = peakMapEntry.getValue();
+			System.out.println("\nActive Cluster");
 			System.out.println(peakMapEntry);
-		}
-		System.out.println("------------------");
-		createSleepingCluster(matchedActiveUsers);
-	}
-
-	private void createSleepingCluster(HashMap<String, ArrayList> matchedUsers) {
-
-		for (Entry<String, ArrayList> MatrixEntry : matchedUsers.entrySet()) {
-			ArrayList values = MatrixEntry.getValue();
-			splitActiveUser(values);
+			System.out.println("------------------");
+			createSleepingCluster(firstActiveUserList);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	private void splitActiveUser(ArrayList<String> users) {
+	private void createSleepingCluster(ArrayList<String> users)
+			throws SQLException {
 		try {
 			initUserObj.returnUserObject(users);
 			userObj = initUserObj.aliases;
@@ -162,62 +155,28 @@ public class ClusterUser {
 		totalSleepingUserCluster.add(users2000);
 		totalSleepingUserCluster.add(nullcluster);
 
-		// System.out.println("\nSleeping Cluster" + totalSleepingUserCluster);
-
 		HashMap<String, ArrayList> matchedSleepingUsers = new HashMap<String, ArrayList>();
 		matchedSleepingUsers = initCalc
 				.calculateMatchedList(totalSleepingUserCluster);
 
-		System.out.println("\nInactive Users: ");
-		for (Entry<String, ArrayList> peakMapEntry : matchedSleepingUsers
+		for (Entry<String, ArrayList> sleepingUserMap : matchedSleepingUsers
 				.entrySet()) {
-			System.out.println(peakMapEntry);
+			ArrayList<String> sleepingUserList = sleepingUserMap.getValue();
+			System.out.println("\nSleeping Cluster Users: ");
+			System.out.println(sleepingUserList);
+			System.out.println("------------------");
+			secondActivityCluster(sleepingUserList);
 		}
-		System.out.println("------------------");
-		secondActivityCluster(matchedSleepingUsers);
 
-		secondActivityCluster = new ArrayList<ArrayList<String>>();
-		secondActivityCluster.add(secondActivitycluster0004);
-		secondActivityCluster.add(secondActivitycluster0408);
-		secondActivityCluster.add(secondActivitycluster0812);
-		secondActivityCluster.add(secondActivitycluster1216);
-		secondActivityCluster.add(secondActivitycluster1620);
-		secondActivityCluster.add(secondActivitycluster2000);
-
-		HashMap<String, ArrayList> matchedsecondActivityClusterUsers = new HashMap<String, ArrayList>();
-		matchedsecondActivityClusterUsers = initCalc.calculateMatchedList(secondActivityCluster);
-		
-		System.out.println("\n Second Activity Cluster Users: ");
-		for (Entry<String, ArrayList> peakMapEntry : matchedsecondActivityClusterUsers
-				.entrySet()) {
-			System.out.println(peakMapEntry);
-		}
-		
-		clearList();
-		System.out.println("******************");
 	}
 
 	/**
 	 * creating second activity cluster
 	 * 
-	 * @param matchedSleepingUsers
+	 * @param user
 	 */
-	private void secondActivityCluster(
-			HashMap<String, ArrayList> matchedSleepingUsers) {
 
-		for (Entry<String, ArrayList> peakMapEntry : matchedSleepingUsers
-				.entrySet()) {
-			ArrayList values = peakMapEntry.getValue();
-			try {
-				splitUserForSecondActivityPeak(values);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
-	private void splitUserForSecondActivityPeak(ArrayList user)
-			throws SQLException {
+	private void secondActivityCluster(ArrayList user) throws SQLException {
 
 		initUserObj.returnUserObject(user);
 		userObj = initUserObj.aliases;
@@ -251,6 +210,27 @@ public class ClusterUser {
 			userObj.add(tempAlias);
 		}
 		userObj.clear();
+
+		secondActivityCluster = new ArrayList<ArrayList<String>>();
+		secondActivityCluster.add(secondActivitycluster0004);
+		secondActivityCluster.add(secondActivitycluster0408);
+		secondActivityCluster.add(secondActivitycluster0812);
+		secondActivityCluster.add(secondActivitycluster1216);
+		secondActivityCluster.add(secondActivitycluster1620);
+		secondActivityCluster.add(secondActivitycluster2000);
+
+		HashMap<String, ArrayList> matchedsecondActivityClusterUsers = new HashMap<String, ArrayList>();
+		matchedsecondActivityClusterUsers = initCalc
+				.calculateMatchedList(secondActivityCluster);
+
+		System.out.println("\n Second Activity Cluster Users: ");
+		for (Entry<String, ArrayList> secondActivitypeakMapEntry : matchedsecondActivityClusterUsers
+				.entrySet()) {
+			System.out.println(secondActivitypeakMapEntry);
+		}
+		matchedsecondActivityClusterUsers.clear();
+		clearList();
+		System.out.println("******************");
 	}
 
 	private void createSecondActiveCluster(double[] timeVector, String user) {
