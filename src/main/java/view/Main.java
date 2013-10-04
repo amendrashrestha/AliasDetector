@@ -1,6 +1,6 @@
 package view;
 
-import model.ClusterUser;
+import controller.AnalyzeUsers;
 
 public class Main {
 
@@ -9,7 +9,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		ClusterUser init = new ClusterUser();
+		AnalyzeUsers init = new AnalyzeUsers();
 		init.calculateFusionEquality();
 	}
 }

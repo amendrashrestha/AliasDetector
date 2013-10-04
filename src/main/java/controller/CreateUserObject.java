@@ -4,11 +4,11 @@ import java.util.ArrayList;
 
 import model.Alias;
 
-public class TimeStyloAnalysis {
+public class CreateUserObject {
 
 	public ArrayList<Alias> aliases;
 
-	public TimeStyloAnalysis() {
+	public CreateUserObject() {
 
 	}
 
@@ -25,7 +25,6 @@ public class TimeStyloAnalysis {
 
 		for (int i = 0; i < userList.size(); i++) {
 			String userID = userList.get(i).toString();
-
 			tempAlias[i] = new Alias(userID);
 			aliases.add(tempAlias[i]);
 		}

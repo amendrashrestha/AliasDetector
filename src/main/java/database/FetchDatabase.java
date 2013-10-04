@@ -25,7 +25,7 @@ public class FetchDatabase {
                 " SELECT distinct MakerID FROM tbl_posts " +
                 " group by MakerID " + 
                 " order by MakerID" +
-               " limit 10";              
+               " limit 30";              
         try {
 			con = dbConnect.getDBConnection();
 			System.out.println(selectUserQuery);

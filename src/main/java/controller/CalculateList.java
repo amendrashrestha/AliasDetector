@@ -6,6 +6,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CalculateList {
+	
+	public CalculateList(){
+		
+	}
 
 	HashMap calculateMatchedList(ArrayList<ArrayList<String>> ActivityPeakUsers) {
 		HashMap matchedUserMap = new HashMap<String, ArrayList>();
@@ -60,7 +64,6 @@ public class CalculateList {
 		Matcher matcher = Pattern.compile(regex).matcher(userID);
 		while (matcher.find()) {
 			num = matcher.group();
-			// System.out.println(num);
 		}
 		return num;
 	}

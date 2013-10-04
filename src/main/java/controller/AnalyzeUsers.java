@@ -1,20 +1,18 @@
-package model;
+package controller;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import controller.AnalyzePost;
-import controller.TimeStyloAnalysis;
 
 import database.FetchDatabase;
 
-public class ClusterUser {
+public class AnalyzeUsers {
 
      
     
 	FetchDatabase getResult = new FetchDatabase();
-	AnalyzePost init = new AnalyzePost();
+	ClusterUser init = new ClusterUser();
 
 	public void calculateFusionEquality() {
 
@@ -25,9 +23,9 @@ public class ClusterUser {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
-		int userSize = users.size();
-		TimeStyloAnalysis timeStylo = new TimeStyloAnalysis();
-		timeStylo.returnUserObject(users);		
+//		int userSize = users.size();
+//		CreateUserObject timeStylo = new CreateUserObject();
+//		timeStylo.returnUserObject(users);		
 		
 		
 		
@@ -41,7 +39,6 @@ public class ClusterUser {
 	}
 
 	public void divideUserPostandTime(String ID) {
-
 		ArrayList userPost = new ArrayList();
 		ArrayList<?> userPostTime = new ArrayList<Object>();
 		ArrayList firstUserPost = new ArrayList<Object>();
