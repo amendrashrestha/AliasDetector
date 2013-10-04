@@ -49,6 +49,7 @@ public class ClusterUser {
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void createCluster(ArrayList<String> user) throws SQLException {
 		initUserObj.returnUserObject(user);
 		userObj = initUserObj.aliases;
@@ -92,11 +93,9 @@ public class ClusterUser {
 		firstActivityCluster.add(firstActivitycluster2000);
 
 		HashMap<String, ArrayList> matchedActiveUsers = new HashMap<String, ArrayList>();
-		matchedActiveUsers = initCalc
-				.calculateMatchedList(firstActivityCluster);		
+		matchedActiveUsers = initCalc.calculateMatchedList(firstActivityCluster);		
 
-		for (Entry<String, ArrayList> peakMapEntry : matchedActiveUsers
-				.entrySet()) {
+		for (Entry<String, ArrayList> peakMapEntry : matchedActiveUsers.entrySet()) {
 			ArrayList<String> firstActiveUserList = peakMapEntry.getValue();
 			System.out.println("\nActive Cluster");
 			System.out.println(peakMapEntry);
